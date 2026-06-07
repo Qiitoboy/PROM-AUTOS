@@ -9,7 +9,7 @@ const About = () => {
         alt="Movie"  className="h-full w-full object-cover"/>
     </figure>
     <div className="card-body ">
-      <h6 className="text-blue-500">About Us</h6>
+      <h6 className="text-[#BF1E2E]">About Us</h6>
       <h2 className="card-title text-left">Cheap prices with
       Quality Cars</h2>
       <div className="text-left">
@@ -20,7 +20,7 @@ const About = () => {
 
        </div>
       <div className="card-actions justify-end flex justify-start">
-        <button className="btn bg-blue-500 text-white hover:bg-blue-300">Learn more</button>
+        <button className="btn bg-[#BF1E2E] text-white hover:bg-red-900">Learn more</button>
       </div>
     </div>
   </div>

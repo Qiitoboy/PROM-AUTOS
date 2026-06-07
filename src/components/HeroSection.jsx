@@ -12,12 +12,12 @@ const HeroSection = ({ scrollToSection, homeRef, aboutRef, carsRef, blogRef }) =
       style={{ backgroundImage: "url('/img/Background-home.png')" }}
     >
       {/* Header */}
-      <header className="absolute top-0 left-0 w-full z-50 backdrop-blur-md shadow-md transition-all">
-        <nav className="flex items-center justify-between p-5 max-w-6xl mx-auto">
+<header className="absolute top-0 left-0 w-full z-50 bg-white shadow-md transition-all">   
+       <nav className="flex items-center justify-between p-5 max-w-6xl mx-auto">
           {/* Logo */}
-          <a className="text-xl font-bold text-blue-600">
-            Prom <span className="text-white">Autos</span>
-          </a>
+        <a className="flex items-center">
+  <img src="/promlogo.jpeg" alt="Prom Autos Logo" className="h-10 w-auto" />
+</a>
 
           {/* Navigation Links */}
           <ul
@@ -27,7 +27,7 @@ const HeroSection = ({ scrollToSection, homeRef, aboutRef, carsRef, blogRef }) =
           >
             <li>
               <button
-                className=" block py-2 px-4 text-white hover:text-blue-600 font-bold"
+            className="block py-2 px-4 text-black hover:text-[#BF1E2E] font-bold"
                 onClick={() => scrollToSection(homeRef)}
               >
                 Home
@@ -35,15 +35,14 @@ const HeroSection = ({ scrollToSection, homeRef, aboutRef, carsRef, blogRef }) =
             </li>
             <li>
               <button
-                className="block py-2 px-4 text-white hover:text-blue-600 font-bold"
-                onClick={() => scrollToSection(carsRef)}
+            className="block py-2 px-4 text-black hover:text-[#BF1E2E] font-bold"                onClick={() => scrollToSection(carsRef)}
               >
                 Cars
               </button>
             </li>
             <li>
               <button
-                className="block py-2 px-4 text-white hover:text-blue-600 font-bold"
+               className="block py-2 px-4 text-black hover:text-[#BF1E2E] font-bold"
                 onClick={() => scrollToSection(aboutRef)}
               >
                 About
@@ -51,7 +50,7 @@ const HeroSection = ({ scrollToSection, homeRef, aboutRef, carsRef, blogRef }) =
             </li>
             <li>
               <button
-                className="block py-2 px-4 text-white hover:text-blue-600 font-bold"
+                className="block py-2 px-4 text-black hover:text-[#BF1E2E] font-bold"
                 onClick={() => scrollToSection(blogRef)}
               >
                 Blog
@@ -62,11 +61,11 @@ const HeroSection = ({ scrollToSection, homeRef, aboutRef, carsRef, blogRef }) =
           {/* Icons */}
           <div className="flex space-x-4 items-center">
             <FaSearch
-              className="text-lg text-white cursor-pointer hover:text-blue-600"
+              className="text-lg text-black cursor-pointer hover:text-[#BF1E2E]"
               onClick={() => setSearchOpen(!searchOpen)}
             />
             <FaBars
-              className="text-lg cursor-pointer md:hidden"
+             className="text-lg text-black cursor-pointer md:hidden"
               onClick={() => setMenuOpen(!menuOpen)}
             />
           </div>
@@ -78,7 +77,7 @@ const HeroSection = ({ scrollToSection, homeRef, aboutRef, carsRef, blogRef }) =
             <input
               type="text"
               placeholder="Search..."
-              className="w-11/12 p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+              className="w-11/12 p-2 border rounded focus:outline-none focus:ring-2 focus:ring-[#BF1E2E]"
             />
           </div>
         )}
@@ -87,12 +86,12 @@ const HeroSection = ({ scrollToSection, homeRef, aboutRef, carsRef, blogRef }) =
       {/* Hero Section Content */}
       <div className="p-16 mt-16">
         <h1 className="text-4xl text-white font-bold">
-          Welcome to <span className="text-blue-600">Our Cars</span>
+          Welcome to <span className="text-[#BF1E2E]">Our Cars</span>
         </h1>
         <p className="text-white mt-4">Find your dream car with us.</p>
 
         <button
-          className="mt-4 px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-500"
+          className="mt-4 px-6 py-2 bg-[#BF1E2E] text-white rounded hover:bg-red-900"
           onClick={() => scrollToSection(carsRef)}
         >
           Explore Now

@@ -14,7 +14,7 @@ const Car = () => {
   return (
     <div className="p-8">
       {/* Title on top */}
-      <h6 className="text-blue-500 text-center">All cars</h6>
+      <h6 className="text-[#BF1E2E] text-center">All cars</h6>
 
       <h2 className=" font-bold text-center  mb-6">
         We Have All Types of Cars
@@ -35,7 +35,7 @@ const Car = () => {
 </figure>
             <div className="card-body">
               <div className="card-actions mt-2 justify-end flex">
-                <button className="btn bg-white text-black hover:bg-blue-600 hover:text-white ">View Details</button>
+                <button className="btn bg-white text-black hover:bg-[#BF1E2E] hover:text-white ">View Details</button>
               </div>
             </div>
           </div>
@@ -44,7 +44,7 @@ const Car = () => {
 
       {/* Show More Button */}
       <div className="mt-6 flex justify-center">
-        <button className="btn bg-blue-500 text-white hover:bg-blue-300">Show More</button>
+        <button className="btn bg-[#BF1E2E] text-white hover:bg-red-900">Show More</button>
       </div>
     </div>
   );
