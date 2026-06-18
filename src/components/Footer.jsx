@@ -1,55 +1,154 @@
 import React from "react";
+import { FaFacebookF, FaTwitter, FaYoutube, FaInstagram, FaWhatsapp, FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 
-const Footer = () => {
+const Footer = ({ setCurrentPage }) => {
+  const handleLinkClick = (pageId, e) => {
+    e.preventDefault();
+    if (setCurrentPage) {
+      setCurrentPage(pageId);
+    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <footer className="footer sm:footer-horizontal bg-[#BF1E2E] text-neutral-content p-10 ">
-    <aside>
-     
-      <p>
-        OTR Industries Ltd.
-        <br />
-        Providing reliable tech since 2022
-      </p>
-    </aside>
-    <nav>
-      <h6 className="footer-title">Socials</h6>
-      <div className="grid grid-flow-col gap-4">
-        <a>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            className="fill-current hover:text-blue-500">
-            <path
-              d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path>
-          </svg>
-        </a>
-        <a>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            className="fill-current hover:text-red-500">
-            <path
-              d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path>
-          </svg>
-        </a>
-        <a>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            className="fill-current hover:text-[#BF1E2E]">
-            <path
-              d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
-          </svg>
-        </a>
+    <footer className="bg-[#0B0C10] border-t border-gray-800 text-gray-400 text-sm">
+      {/* Top Banner section */}
+      <div className="bg-[#BF1E2E] text-white py-8 px-6">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+          <div>
+            <h3 className="text-xl font-black uppercase tracking-tight">Looking for a high-performance vehicle?</h3>
+            <p className="text-sm text-red-100 mt-1">Get in touch with our team for exclusive offers and custom build options.</p>
+          </div>
+          <div className="flex gap-3">
+            <a 
+              href="https://wa.me/15550199900" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="flex items-center gap-2 bg-white text-black hover:bg-black hover:text-white px-5 py-3 rounded-md font-bold text-xs uppercase tracking-wider transition-all"
+            >
+              <FaWhatsapp className="text-green-600 text-lg" /> WhatsApp Sales
+            </a>
+            <a 
+              href="#contact" 
+              onClick={(e) => handleLinkClick("contact", e)} 
+              className="flex items-center bg-black hover:bg-gray-900 text-white border border-gray-800 px-5 py-3 rounded-md font-bold text-xs uppercase tracking-wider transition-all"
+            >
+              Contact Us
+            </a>
+          </div>
+        </div>
       </div>
-    </nav>
-  </footer>
+
+      {/* Main Footer columns */}
+      <div className="max-w-7xl mx-auto py-12 px-6 md:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Brand Column */}
+        <div className="space-y-4">
+          <div className="flex items-center space-x-2">
+            <div className="bg-[#BF1E2E] text-white px-3 py-1 rounded font-black text-lg tracking-tighter">
+              PROM
+            </div>
+            <span className="font-black text-xl tracking-tight text-white">
+              AUTOS
+            </span>
+          </div>
+          <p className="text-gray-500 leading-relaxed text-xs">
+            PROM AUTOS is the premier high-performance luxury automotive dealership. We specialize in track-ready supercars, custom tuning components, and bespoke customer service.
+          </p>
+          {/* Social icons */}
+          <div className="flex space-x-3 pt-2">
+            <a href="#" className="w-8 h-8 rounded-full bg-gray-950 border border-gray-800 flex items-center justify-center hover:bg-[#BF1E2E] hover:text-white transition-all text-gray-400">
+              <FaFacebookF size={14} />
+            </a>
+            <a href="#" className="w-8 h-8 rounded-full bg-gray-950 border border-gray-800 flex items-center justify-center hover:bg-[#BF1E2E] hover:text-white transition-all text-gray-400">
+              <FaTwitter size={14} />
+            </a>
+            <a href="#" className="w-8 h-8 rounded-full bg-gray-950 border border-gray-800 flex items-center justify-center hover:bg-[#BF1E2E] hover:text-white transition-all text-gray-400">
+              <FaYoutube size={14} />
+            </a>
+            <a href="#" className="w-8 h-8 rounded-full bg-gray-950 border border-gray-800 flex items-center justify-center hover:bg-[#BF1E2E] hover:text-white transition-all text-gray-400">
+              <FaInstagram size={14} />
+            </a>
+          </div>
+        </div>
+
+        {/* Quick Links Column */}
+        <div>
+          <h4 className="text-white font-extrabold uppercase text-xs tracking-wider mb-4 border-l-2 border-[#BF1E2E] pl-3">
+            Inventory & Shop
+          </h4>
+          <ul className="space-y-2.5 text-xs">
+            <li>
+              <a href="#" onClick={(e) => handleLinkClick("new-cars", e)} className="hover:text-white transition-colors">New Arrivals</a>
+            </li>
+            <li>
+              <a href="#" onClick={(e) => handleLinkClick("used-cars", e)} className="hover:text-white transition-colors">Pre-Owned Supercars</a>
+            </li>
+            <li>
+              <a href="#" onClick={(e) => handleLinkClick("parts", e)} className="hover:text-white transition-colors">Parts Vault Catalog</a>
+            </li>
+            <li>
+              <a href="#" onClick={(e) => handleLinkClick("home", e)} className="hover:text-white transition-colors">Featured Gallery</a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Contact Info Column */}
+        <div>
+          <h4 className="text-white font-extrabold uppercase text-xs tracking-wider mb-4 border-l-2 border-[#BF1E2E] pl-3">
+            Dealership Address
+          </h4>
+          <ul className="space-y-3 text-xs">
+            <li className="flex items-start gap-2.5">
+              <FaMapMarkerAlt className="text-[#BF1E2E] mt-0.5 shrink-0" />
+              <span className="text-gray-500 leading-relaxed">
+                450 Performance Drive, Suite 100<br />
+                Silicon Valley, CA 94025
+              </span>
+            </li>
+            <li className="flex items-center gap-2.5">
+              <FaPhoneAlt className="text-[#BF1E2E] shrink-0" />
+              <span className="text-gray-500">+1 (555) 019-9900</span>
+            </li>
+            <li className="flex items-center gap-2.5">
+              <FaEnvelope className="text-[#BF1E2E] shrink-0" />
+              <span className="text-gray-500">sales@promautos.com</span>
+            </li>
+          </ul>
+        </div>
+
+        {/* Newsletter subscribe */}
+        <div>
+          <h4 className="text-white font-extrabold uppercase text-xs tracking-wider mb-4 border-l-2 border-[#BF1E2E] pl-3">
+            Join the Club
+          </h4>
+          <p className="text-gray-500 text-xs mb-3 leading-relaxed">
+            Subscribe to receive alerts on new supercar allocations and special parts releases.
+          </p>
+          <form className="flex" onSubmit={(e) => e.preventDefault()}>
+            <input 
+              type="email" 
+              placeholder="Email address" 
+              className="bg-[#171923] border border-gray-800 text-white rounded-l px-3 py-2 text-xs focus:outline-none focus:border-[#BF1E2E] w-full"
+            />
+            <button className="bg-[#BF1E2E] hover:bg-red-800 text-white px-3 rounded-r text-xs font-bold transition-all">
+              Join
+            </button>
+          </form>
+        </div>
+      </div>
+
+      {/* Bottom Legal bar */}
+      <div className="bg-[#08090C] border-t border-gray-900 py-6 px-6">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-gray-600">
+          <p>&copy; {new Date().getFullYear()} PROM AUTOS. All Rights Reserved. All vehicle specs are mock values.</p>
+          <div className="flex space-x-4">
+            <a href="#" className="hover:text-gray-400 transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-gray-400 transition-colors">Terms of Service</a>
+            <a href="#" onClick={(e) => handleLinkClick("admin", e)} className="hover:text-[#BF1E2E] font-semibold transition-colors">Admin Dashboard</a>
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 };
 

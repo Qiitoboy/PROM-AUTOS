@@ -1,0 +1,163 @@
+import React, { useState } from "react";
+import { FaSearch, FaBars, FaTimes, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
+
+const Navbar = ({ currentPage, setCurrentPage, onSearch }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const navLinks = [
+    { id: "home", label: "Home" },
+    { id: "new-cars", label: "New Cars" },
+    { id: "used-cars", label: "Used Cars" },
+    { id: "parts", label: "Parts Vault" },
+    { id: "contact", label: "Contact Us" },
+    { id: "admin", label: "Command Center" }
+  ];
+
+  const handleNavClick = (pageId) => {
+    setCurrentPage(pageId);
+    setMenuOpen(false);
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (onSearch) {
+      onSearch(searchQuery);
+    }
+  };
+
+  const handleSearchChange = (e) => {
+    const val = e.target.value;
+    setSearchQuery(val);
+    if (onSearch) {
+      onSearch(val);
+    }
+  };
+
+  return (
+    <header className="sticky top-0 z-50 bg-[#0F111A]/95 backdrop-blur-md border-b border-gray-800 transition-all duration-300">
+      {/* Top micro bar for dealer info */}
+      <div className="bg-[#0B0C10] border-b border-gray-900 py-1.5 px-4 hidden md:block">
+        <div className="max-w-7xl mx-auto flex justify-between items-center text-xs text-gray-400 font-medium">
+          <div className="flex space-x-6">
+            <span className="flex items-center gap-1.5"><FaPhoneAlt className="text-[#BF1E2E]" /> +1 (555) 019-9900</span>
+            <span className="flex items-center gap-1.5"><FaEnvelope className="text-[#BF1E2E]" /> sales@promautos.com</span>
+          </div>
+          <div>
+            <span>Mon - Sat: 8:00 AM - 6:00 PM | Sunday: Closed</span>
+          </div>
+        </div>
+      </div>
+
+      <nav className="max-w-7xl mx-auto flex items-center justify-between p-4 md:px-8">
+        {/* Brand Logo */}
+        <div 
+          className="flex items-center space-x-2 cursor-pointer group" 
+          onClick={() => handleNavClick("home")}
+        >
+          <div className="bg-[#BF1E2E] text-white px-3 py-1 rounded font-black text-xl tracking-tighter transition-transform group-hover:scale-105">
+            PROM
+          </div>
+          <span className="font-black text-2xl tracking-tight text-white group-hover:text-[#BF1E2E] transition-colors">
+            AUTOS
+          </span>
+        </div>
+
+        {/* Desktop Navigation Links */}
+        <ul className="hidden lg:flex items-center space-x-8">
+          {navLinks.map((link) => (
+            <li key={link.id}>
+              <button
+                onClick={() => handleNavClick(link.id)}
+                className={`text-xs uppercase font-extrabold tracking-wider transition-all duration-200 cursor-pointer relative py-2 ${
+                  currentPage === link.id
+                    ? "text-[#BF1E2E]"
+                    : "text-gray-300 hover:text-white"
+                }`}
+              >
+                {link.label}
+                {currentPage === link.id && (
+                  <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#BF1E2E] animate-fade-in" />
+                )}
+              </button>
+            </li>
+          ))}
+        </ul>
+
+        {/* Right Icons / Call Actions */}
+        <div className="flex items-center space-x-4">
+          <button 
+            className="text-gray-300 hover:text-[#BF1E2E] text-lg p-2 rounded-full hover:bg-gray-800/50 transition-all cursor-pointer"
+            onClick={() => setSearchOpen(!searchOpen)}
+            aria-label="Search Toggle"
+          >
+            {searchOpen ? <FaTimes /> : <FaSearch />}
+          </button>
+          
+          <button
+            onClick={() => handleNavClick("contact")}
+            className="hidden sm:inline-block bg-[#BF1E2E] hover:bg-red-800 text-white font-extrabold text-xs uppercase tracking-wider px-5 py-2.5 rounded transition-all transform hover:-translate-y-[1px] active:translate-y-0 cursor-pointer"
+          >
+            Get In Touch
+          </button>
+
+          <button 
+            className="lg:hidden text-gray-300 hover:text-white text-xl p-2 rounded-full hover:bg-gray-800/50 transition-all cursor-pointer"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Menu Toggle"
+          >
+            {menuOpen ? <FaTimes /> : <FaBars />}
+          </button>
+        </div>
+      </nav>
+
+      {/* Slide-out Search Bar */}
+      {searchOpen && (
+        <div className="bg-[#0B0C10] border-b border-gray-800 py-4 px-6 animate-slide-down">
+          <form onSubmit={handleSearchSubmit} className="max-w-3xl mx-auto flex gap-2">
+            <input
+              type="text"
+              placeholder="Search vehicles, parts, specifications..."
+              value={searchQuery}
+              onChange={handleSearchChange}
+              className="flex-grow bg-[#171923] border border-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:border-[#BF1E2E] focus:ring-1 focus:ring-[#BF1E2E] text-sm"
+              autoFocus
+            />
+            <button 
+              type="submit"
+              className="bg-[#BF1E2E] hover:bg-red-800 text-white px-6 rounded-lg text-sm font-bold transition-all cursor-pointer"
+            >
+              Search
+            </button>
+          </form>
+        </div>
+      )}
+
+      {/* Mobile Drawer Navigation */}
+      {menuOpen && (
+        <div className="lg:hidden absolute top-full left-0 w-full bg-[#0F111A] border-b border-gray-800 py-6 px-6 flex flex-col space-y-4 shadow-xl z-40 animate-fade-in">
+          {navLinks.map((link) => (
+            <button
+              key={link.id}
+              onClick={() => handleNavClick(link.id)}
+              className={`text-left text-sm uppercase font-extrabold tracking-wider py-2.5 px-4 rounded-md transition-all ${
+                currentPage === link.id
+                  ? "bg-[#BF1E2E] text-white"
+                  : "text-gray-300 hover:bg-gray-800/50 hover:text-white"
+              }`}
+            >
+              {link.label}
+            </button>
+          ))}
+          <div className="pt-4 border-t border-gray-800 flex flex-col space-y-2 text-xs text-gray-400 px-4">
+            <span className="flex items-center gap-2"><FaPhoneAlt className="text-[#BF1E2E]" /> +1 (555) 019-9900</span>
+            <span className="flex items-center gap-2"><FaEnvelope className="text-[#BF1E2E]" /> sales@promautos.com</span>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+};
+
+export default Navbar;
