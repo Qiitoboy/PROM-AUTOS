@@ -41,8 +41,8 @@ const Navbar = ({ currentPage, setCurrentPage, onSearch }) => {
       <div className="bg-[#0B0C10] border-b border-gray-900 py-1.5 px-4 hidden md:block">
         <div className="max-w-7xl mx-auto flex justify-between items-center text-xs text-gray-400 font-medium">
           <div className="flex space-x-6">
-            <span className="flex items-center gap-1.5"><FaPhoneAlt className="text-[#BF1E2E]" /> +1 (555) 019-9900</span>
-            <span className="flex items-center gap-1.5"><FaEnvelope className="text-[#BF1E2E]" /> sales@promautos.com</span>
+            <span className="flex items-center gap-1.5"><FaPhoneAlt className="text-[#BF1E2E]" /> +233 576 021 655</span>
+            <span className="flex items-center gap-1.5"><FaEnvelope className="text-[#BF1E2E]" /> promautosltd@gmail.com</span>
           </div>
           <div>
             <span>Mon - Sat: 8:00 AM - 6:00 PM | Sunday: Closed</span>
@@ -53,15 +53,12 @@ const Navbar = ({ currentPage, setCurrentPage, onSearch }) => {
       <nav className="max-w-7xl mx-auto flex items-center justify-between p-4 md:px-8">
         {/* Brand Logo */}
         <div 
-          className="flex items-center space-x-2 cursor-pointer group" 
+          className="flex items-center cursor-pointer group" 
           onClick={() => handleNavClick("home")}
         >
-          <div className="bg-[#BF1E2E] text-white px-3 py-1 rounded font-black text-xl tracking-tighter transition-transform group-hover:scale-105">
-            PROM
+          <div className="bg-white py-1 px-4 rounded-lg flex items-center justify-center h-12 md:h-14 shadow-sm transition-transform group-hover:scale-105">
+            <img src="/promlogo.jpg" alt="PROM AUTOS" className="h-full w-40 md:w-48 object-contain" />
           </div>
-          <span className="font-black text-2xl tracking-tight text-white group-hover:text-[#BF1E2E] transition-colors">
-            AUTOS
-          </span>
         </div>
 
         {/* Desktop Navigation Links */}
@@ -151,8 +148,8 @@ const Navbar = ({ currentPage, setCurrentPage, onSearch }) => {
             </button>
           ))}
           <div className="pt-4 border-t border-gray-800 flex flex-col space-y-2 text-xs text-gray-400 px-4">
-            <span className="flex items-center gap-2"><FaPhoneAlt className="text-[#BF1E2E]" /> +1 (555) 019-9900</span>
-            <span className="flex items-center gap-2"><FaEnvelope className="text-[#BF1E2E]" /> sales@promautos.com</span>
+            <span className="flex items-center gap-2"><FaPhoneAlt className="text-[#BF1E2E]" /> +233 576 021 655</span>
+            <span className="flex items-center gap-2"><FaEnvelope className="text-[#BF1E2E]" /> promautosltd@gmail.com</span>
           </div>
         </div>
       )}

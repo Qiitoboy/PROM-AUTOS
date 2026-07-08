@@ -6,9 +6,7 @@ const VehicleCard = ({ vehicle, onViewDetails }) => {
 
   // Format currency
   const formatPrice = (num) => {
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
+    return "₵" + new Intl.NumberFormat("en-US", {
       maximumFractionDigits: 0
     }).format(num);
   };

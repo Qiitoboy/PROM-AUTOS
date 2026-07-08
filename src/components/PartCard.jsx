@@ -5,9 +5,7 @@ const PartCard = ({ part, onViewDetails }) => {
   const { name, category, price, compatibility, inStock, stockCount, image } = part;
 
   const formatPrice = (num) => {
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
+    return "₵" + new Intl.NumberFormat("en-US", {
       maximumFractionDigits: 0
     }).format(num);
   };

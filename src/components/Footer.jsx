@@ -21,7 +21,7 @@ const Footer = ({ setCurrentPage }) => {
           </div>
           <div className="flex gap-3">
             <a 
-              href="https://wa.me/15550199900" 
+              href="https://wa.me/23354552710" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="flex items-center gap-2 bg-white text-black hover:bg-black hover:text-white px-5 py-3 rounded-md font-bold text-xs uppercase tracking-wider transition-all"
@@ -43,16 +43,11 @@ const Footer = ({ setCurrentPage }) => {
       <div className="max-w-7xl mx-auto py-12 px-6 md:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {/* Brand Column */}
         <div className="space-y-4">
-          <div className="flex items-center space-x-2">
-            <div className="bg-[#BF1E2E] text-white px-3 py-1 rounded font-black text-lg tracking-tighter">
-              PROM
-            </div>
-            <span className="font-black text-xl tracking-tight text-white">
-              AUTOS
-            </span>
+          <div className="bg-white py-1.5 px-3.5 rounded-lg flex items-center justify-center h-10 shadow-sm w-fit">
+            <img src="/promlogo.jpg" alt="PROM AUTOS" className="h-full w-auto object-contain" />
           </div>
           <p className="text-gray-500 leading-relaxed text-xs">
-            PROM AUTOS is the premier high-performance luxury automotive dealership. We specialize in track-ready supercars, custom tuning components, and bespoke customer service.
+            PROM AUTOS is the premier high-performance luxury automotive dealership. We specialize in track-ready supercars, custom tuning components, premium car rental services, and bespoke customer service.
           </p>
           {/* Social icons */}
           <div className="flex space-x-3 pt-2">
@@ -101,17 +96,17 @@ const Footer = ({ setCurrentPage }) => {
             <li className="flex items-start gap-2.5">
               <FaMapMarkerAlt className="text-[#BF1E2E] mt-0.5 shrink-0" />
               <span className="text-gray-500 leading-relaxed">
-                450 Performance Drive, Suite 100<br />
-                Silicon Valley, CA 94025
+                Achimota Mile 7<br />
+                Accra, Ghana
               </span>
             </li>
             <li className="flex items-center gap-2.5">
               <FaPhoneAlt className="text-[#BF1E2E] shrink-0" />
-              <span className="text-gray-500">+1 (555) 019-9900</span>
+              <span className="text-gray-500">+233 576 021 655</span>
             </li>
             <li className="flex items-center gap-2.5">
               <FaEnvelope className="text-[#BF1E2E] shrink-0" />
-              <span className="text-gray-500">sales@promautos.com</span>
+              <span className="text-gray-500">promautosltd@gmail.com</span>
             </li>
           </ul>
         </div>
