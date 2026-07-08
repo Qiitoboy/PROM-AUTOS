@@ -10,30 +10,28 @@ from rest_framework_simplejwt.views import (
 urlpatterns = [
     path("admin/", admin.site.urls),
 
-    path("api/", include("cars.urls")),
-]
-
-if settings.DEBUG:
-    urlpatterns += static(
-        settings.MEDIA_URL,
-        document_root=settings.MEDIA_ROOT
-    )
-
-
-    urlpatterns = [
-    path("admin/", admin.site.urls),
-
+    # Cars API
     path("api/", include("cars.urls")),
 
+    # Leads API
+    path("api/", include("leads.urls")),
+
+    # Authentication
     path(
         "api/auth/login/",
         TokenObtainPairView.as_view(),
-        name="token_obtain_pair"
+        name="token_obtain_pair",
     ),
 
     path(
         "api/auth/refresh/",
         TokenRefreshView.as_view(),
-        name="token_refresh"
+        name="token_refresh",
     ),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(
+        settings.MEDIA_URL,
+        document_root=settings.MEDIA_ROOT,
+    )
