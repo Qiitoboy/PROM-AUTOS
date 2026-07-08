@@ -15,7 +15,6 @@ class Car(models.Model):
 
     brand = models.CharField(max_length=100)
     model = models.CharField(max_length=100)
-
     year = models.IntegerField()
 
     price = models.DecimalField(
@@ -25,9 +24,7 @@ class Car(models.Model):
 
     mileage = models.IntegerField()
 
-    fuel_type = models.CharField(
-        max_length=50
-    )
+    fuel_type = models.CharField(max_length=50)
 
     condition = models.CharField(
         max_length=10,
@@ -40,28 +37,28 @@ class Car(models.Model):
         default="available"
     )
 
-    description = models.TextField(
-        blank=True
-    )
+    description = models.TextField(blank=True)
 
-    image = models.ImageField(
-        upload_to="cars/",
-        blank=True,
-        null=True
-    )
+    featured = models.BooleanField(default=False)
 
-    featured = models.BooleanField(
-        default=False
-    )
+    created_at = models.DateTimeField(auto_now_add=True)
 
-    created_at = models.DateTimeField(
-        auto_now_add=True
-    )
-
-    updated_at = models.DateTimeField(
-        auto_now=True
-    )
-
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.brand} {self.model} ({self.year})"
+
+
+class CarImage(models.Model):
+    car = models.ForeignKey(
+        Car,
+        on_delete=models.CASCADE,
+        related_name="images"
+    )
+
+    image = models.ImageField(upload_to="cars/")
+
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.car.brand} {self.car.model}"
