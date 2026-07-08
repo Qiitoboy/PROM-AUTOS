@@ -16,6 +16,8 @@ urlpatterns = [
     # Leads API
     path("api/", include("leads.urls")),
 
+    path("api/", include("parts.urls")),
+
     # Authentication
     path(
         "api/auth/login/",
