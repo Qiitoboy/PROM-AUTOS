@@ -47,7 +47,11 @@ const Contact = ({ onSubmitLead, vehicles = [], parts = [] }) => {
   return (
     <div className="bg-[#0B0C10] min-h-screen pb-16">
       {/* Page Header */}
-      <PageHeader title="Contact Our Team" breadcrumbs={["Contact Us"]} />
+      <PageHeader
+        title="Contact Our Team"
+        breadcrumbs={["Contact Us"]}
+        backgroundImage="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=1920&q=80"
+      />
 
       <div className="max-w-7xl mx-auto px-6 md:px-8 mt-12 grid grid-cols-1 lg:grid-cols-12 gap-12">
         {/* Left Column: Contact Cards */}

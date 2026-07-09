@@ -8,7 +8,121 @@
   }
 }
 
-/* Custom scrollbar styling */
+/* ============================================
+   HERO CAROUSEL ANIMATIONS
+   ============================================ */
+
+/* Ken Burns — slow cinematic zoom + slight pan */
+@keyframes kenburns {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.08) translate(-0.5%, -0.5%);
+  }
+  100% {
+    transform: scale(1.15) translate(-1%, -1%);
+  }
+}
+
+/* Fade in for slide appearance */
+@keyframes heroFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Fade out for slide exit */
+@keyframes heroFadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Content slide-up reveal on page load */
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Subtle pulse for slide indicators */
+@keyframes dotPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(191, 30, 46, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(191, 30, 46, 0);
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+.animate-kenburns {
+  animation: kenburns 12s ease-in-out forwards;
+}
+
+.animate-hero-fade-in {
+  animation: heroFadeIn 1.2s ease-in-out forwards;
+}
+
+.animate-hero-fade-out {
+  animation: heroFadeOut 1.2s ease-in-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+.animate-slide-up-delay-1 {
+  animation: slideUp 0.8s ease-out 0.15s forwards;
+  opacity: 0;
+}
+
+.animate-slide-up-delay-2 {
+  animation: slideUp 0.8s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+.animate-slide-up-delay-3 {
+  animation: slideUp 0.8s ease-out 0.45s forwards;
+  opacity: 0;
+}
+
+.animate-dot-pulse {
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+/* Parallax background utility */
+.parallax-bg {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media (max-width: 768px) {
+  .parallax-bg {
+    background-attachment: scroll;
+  }
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR STYLING
+   ============================================ */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -32,4 +146,3 @@ input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px #171923 inset;
   transition: background-color 5000s ease-in-out 0s;
 }
-

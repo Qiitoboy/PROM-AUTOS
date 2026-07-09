@@ -27,7 +27,11 @@ const Parts = ({ parts, onViewDetails, searchFilter = "" }) => {
   return (
     <div className="bg-[#0B0C10] min-h-screen pb-16">
       {/* Page Header */}
-      <PageHeader title="Parts Vault" breadcrumbs={["Parts Catalog"]} />
+      <PageHeader
+        title="Parts Vault"
+        breadcrumbs={["Parts Catalog"]}
+        backgroundImage="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=1920&q=80"
+      />
 
       <div className="max-w-7xl mx-auto px-6 md:px-8 mt-10">
         {/* Search and Category filters */}
