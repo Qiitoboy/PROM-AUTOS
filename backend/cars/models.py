@@ -26,6 +26,27 @@ class Car(models.Model):
 
     fuel_type = models.CharField(max_length=50)
 
+    transmission = models.CharField(
+        max_length=50,
+        default="Automatic"
+    )
+
+    body_type = models.CharField(
+        max_length=50,
+        blank=True
+    )
+
+    engine = models.CharField(
+        max_length=100,
+        blank=True
+    )
+
+    speed = models.CharField(
+        max_length=50,
+        blank=True,
+        help_text="Example: 3.2s 0-100 km/h"
+    )
+
     condition = models.CharField(
         max_length=10,
         choices=CONDITION_CHOICES
@@ -50,15 +71,20 @@ class Car(models.Model):
 
 
 class CarImage(models.Model):
+
     car = models.ForeignKey(
         Car,
         on_delete=models.CASCADE,
         related_name="images"
     )
 
-    image = models.ImageField(upload_to="cars/")
+    image = models.ImageField(
+        upload_to="cars/"
+    )
 
-    uploaded_at = models.DateTimeField(auto_now_add=True)
+    uploaded_at = models.DateTimeField(
+        auto_now_add=True
+    )
 
     def __str__(self):
         return f"{self.car.brand} {self.car.model}"
