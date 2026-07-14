@@ -1,16 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PageHeader from "../components/PageHeader";
 import VehicleCard from "../components/VehicleCard";
+import { getUsedCars } from "../api/cars";
 
-const UsedCars = ({ vehicles, onViewDetails }) => {
+const UsedCars = ({ onViewDetails }) => {
   // Filters state
   const [make, setMake] = useState("ALL");
   const [maxPrice, setMaxPrice] = useState("");
   const [sortOrder, setSortOrder] = useState("default");
 
-  // Filter for USED condition
-  const usedVehicles = vehicles.filter(v => v.condition === "USED");
+  const [vehicles, setVehicles] = useState([]);
 
+  useEffect(() => {
+    getUsedCars()
+      .then((response) => {
+        console.log("Used cars:", response.data);
+        setVehicles(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  // Filter for USED condition
+  const usedVehicles = vehicles;
   // Get unique makes
   const uniqueMakes = ["ALL", ...new Set(usedVehicles.map(v => v.make))];
 
@@ -22,16 +35,24 @@ const UsedCars = ({ vehicles, onViewDetails }) => {
   }
 
   if (maxPrice) {
-    filtered = filtered.filter(v => v.price <= parseInt(maxPrice));
+    filtered = filtered.filter(
+      (v) => Number(v.price) <= Number(maxPrice)
+    );
   }
 
   // Sort
   if (sortOrder === "price-asc") {
-    filtered = [...filtered].sort((a, b) => a.price - b.price);
+    filtered = [...filtered].sort(
+      (a, b) => Number(a.price) - Number(b.price)
+    );
   } else if (sortOrder === "price-desc") {
-    filtered = [...filtered].sort((a, b) => b.price - a.price);
+    filtered = [...filtered].sort(
+      (a, b) => Number(b.price) - Number(a.price)
+    );
   } else if (sortOrder === "year-desc") {
-    filtered = [...filtered].sort((a, b) => b.year - a.year);
+    filtered = [...filtered].sort(
+      (a, b) => Number(b.year) - Number(a.year)
+    );
   }
 
   return (
