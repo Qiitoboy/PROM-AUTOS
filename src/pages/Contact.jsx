@@ -79,7 +79,7 @@ const Contact = ({ onSubmitLead, vehicles = [], parts = [] }) => {
 
             {/* WhatsApp Card */}
             <a 
-              href="https://wa.me/15550199900" 
+              href="https://wa.me/233545526710" 
               target="_blank" 
               rel="noopener noreferrer"
               className="bg-[#171923] border border-gray-800 hover:border-green-600/40 rounded-xl p-5 flex items-start gap-4 transition-all"

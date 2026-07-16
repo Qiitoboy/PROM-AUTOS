@@ -94,7 +94,7 @@ const Parts = ({ parts, onViewDetails, searchFilter = "" }) => {
             </p>
           </div>
           <a
-            href="https://wa.me/15550199900"
+            href="https://wa.me/233545526710"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-[#BF1E2E] hover:bg-red-800 text-white font-extrabold text-xs uppercase tracking-wider px-6 py-3 rounded-lg transition-all text-center shrink-0 cursor-pointer py-3"

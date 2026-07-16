@@ -316,7 +316,7 @@ const Home = ({ vehicles, parts, setCurrentPage, onViewDetails }) => {
                 Inquire Now
               </button>
               <a
-                href="https://wa.me/23354552710"
+                href="https://wa.me/233545526710"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto flex items-center justify-center gap-2 bg-transparent hover:bg-gray-800 text-white border border-gray-700 hover:border-gray-500 font-extrabold text-xs uppercase tracking-wider px-6 py-3.5 rounded-lg transition-all"

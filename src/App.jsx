@@ -82,9 +82,7 @@ const App = () => {
 
   // Helper for formatting prices
   const formatPrice = (num) => {
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
+    return "₵" + new Intl.NumberFormat("en-US", {
       maximumFractionDigits: 0
     }).format(num);
   };
@@ -250,7 +248,7 @@ const App = () => {
                     Inquire Item
                   </button>
                   <a
-                    href={`https://wa.me/15550199900?text=Hello,%20I'm%20interested%2520in%2520the%2520${encodeURIComponent(selectedItem.name)}`}
+                    href={`https://wa.me/233545526710?text=Hello,%20I'm%20interested%2520in%2520the%2520${encodeURIComponent(selectedItem.name)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-transparent hover:bg-white/5 text-white border border-gray-700 hover:border-gray-500 p-3 rounded-lg transition-all flex items-center justify-center shrink-0"

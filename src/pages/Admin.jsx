@@ -29,9 +29,7 @@ const Admin = ({
 
   // Formatting price helper
   const formatPrice = (num) => {
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
+    return "₵" + new Intl.NumberFormat("en-US", {
       maximumFractionDigits: 0
     }).format(num);
   };
@@ -270,7 +268,7 @@ const Admin = ({
 
                 <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
                   <div className="space-y-1">
-                    <label className="text-[9px] font-bold text-gray-400 uppercase">Price (USD) *</label>
+                    <label className="text-[9px] font-bold text-gray-400 uppercase">Price (GHS) *</label>
                     <input
                       type="number" required placeholder="e.g. 110900"
                       value={vehicleForm.price}
@@ -474,7 +472,7 @@ const Admin = ({
                     </select>
                   </div>
                   <div className="space-y-1">
-                    <label className="text-[9px] font-bold text-gray-400 uppercase">Price (USD) *</label>
+                    <label className="text-[9px] font-bold text-gray-400 uppercase">Price (GHS) *</label>
                     <input
                       type="number" required placeholder="e.g. 8450"
                       value={partForm.price}

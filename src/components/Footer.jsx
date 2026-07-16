@@ -21,7 +21,7 @@ const Footer = ({ setCurrentPage }) => {
           </div>
           <div className="flex gap-3">
             <a 
-              href="https://wa.me/23354552710" 
+              href="https://wa.me/233545526710" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="flex items-center gap-2 bg-white text-black hover:bg-black hover:text-white px-5 py-3 rounded-md font-bold text-xs uppercase tracking-wider transition-all"
