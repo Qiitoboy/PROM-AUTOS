@@ -4,11 +4,9 @@ import VehicleCard from "../components/VehicleCard";
 import { getUsedCars } from "../api/cars";
 
 const UsedCars = ({ onViewDetails }) => {
-  // Filters state
   const [make, setMake] = useState("ALL");
   const [maxPrice, setMaxPrice] = useState("");
   const [sortOrder, setSortOrder] = useState("default");
-
   const [vehicles, setVehicles] = useState([]);
 
   useEffect(() => {
@@ -22,42 +20,20 @@ const UsedCars = ({ onViewDetails }) => {
       });
   }, []);
 
-  // Filter for USED condition
   const usedVehicles = vehicles;
-  // Get unique makes
   const uniqueMakes = ["ALL", ...new Set(usedVehicles.map(v => v.make))];
 
-  // Apply filters
   let filtered = usedVehicles;
+  if (make !== "ALL") filtered = filtered.filter(v => v.make === make);
+  if (maxPrice) filtered = filtered.filter((v) => Number(v.price) <= Number(maxPrice));
+  if (sortOrder === "price-asc") filtered = [...filtered].sort((a, b) => Number(a.price) - Number(b.price));
+  else if (sortOrder === "price-desc") filtered = [...filtered].sort((a, b) => Number(b.price) - Number(a.price));
+  else if (sortOrder === "year-desc") filtered = [...filtered].sort((a, b) => Number(b.year) - Number(a.year));
 
-  if (make !== "ALL") {
-    filtered = filtered.filter(v => v.make === make);
-  }
-
-  if (maxPrice) {
-    filtered = filtered.filter(
-      (v) => Number(v.price) <= Number(maxPrice)
-    );
-  }
-
-  // Sort
-  if (sortOrder === "price-asc") {
-    filtered = [...filtered].sort(
-      (a, b) => Number(a.price) - Number(b.price)
-    );
-  } else if (sortOrder === "price-desc") {
-    filtered = [...filtered].sort(
-      (a, b) => Number(b.price) - Number(a.price)
-    );
-  } else if (sortOrder === "year-desc") {
-    filtered = [...filtered].sort(
-      (a, b) => Number(b.year) - Number(a.year)
-    );
-  }
+  const selectClass = "w-full theme-input border rounded-lg p-3 text-xs focus:outline-none focus:border-[#BF1E2E] cursor-pointer";
 
   return (
-    <div className="bg-[#0B0C10] min-h-screen pb-16">
-      {/* Page Header */}
+    <div className="theme-bg-primary min-h-screen pb-16">
       <PageHeader
         title="Pre-Owned Inventory"
         breadcrumbs={["Used Cars"]}
@@ -65,45 +41,28 @@ const UsedCars = ({ onViewDetails }) => {
       />
 
       <div className="max-w-7xl mx-auto px-6 md:px-8 mt-10">
-        {/* Dropdown filter box */}
-        <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 bg-[#171923] border border-gray-800 rounded-xl p-5 mb-8 shadow-md">
-          {/* Make select */}
+        {/* Filter box */}
+        <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 theme-card border rounded-xl p-5 mb-8 shadow-md">
           <div className="space-y-1.5">
-            <label className="text-[10px] font-black uppercase tracking-wider text-gray-500 block">Select Make</label>
-            <select
-              value={make}
-              onChange={(e) => setMake(e.target.value)}
-              className="w-full bg-[#0F111A] border border-gray-850 text-white rounded-lg p-3 text-xs focus:outline-none focus:border-[#BF1E2E] cursor-pointer"
-            >
-              {uniqueMakes.map(m => (
-                <option key={m} value={m}>{m}</option>
-              ))}
+            <label className="text-[10px] font-black uppercase tracking-wider theme-text-muted block">Select Make</label>
+            <select value={make} onChange={(e) => setMake(e.target.value)} className={selectClass}>
+              {uniqueMakes.map(m => <option key={m} value={m}>{m}</option>)}
             </select>
           </div>
 
-          {/* Max Price select */}
           <div className="space-y-1.5">
-            <label className="text-[10px] font-black uppercase tracking-wider text-gray-500 block">Max Price</label>
-            <select
-              value={maxPrice}
-              onChange={(e) => setMaxPrice(e.target.value)}
-              className="w-full bg-[#0F111A] border border-gray-850 text-white rounded-lg p-3 text-xs focus:outline-none focus:border-[#BF1E2E] cursor-pointer"
-            >
+            <label className="text-[10px] font-black uppercase tracking-wider theme-text-muted block">Max Price</label>
+            <select value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} className={selectClass}>
               <option value="">No Limit</option>
-              <option value="100000">$100,000</option>
-              <option value="150000">$150,000</option>
-              <option value="200000">$200,000</option>
+              <option value="100000">₵100,000</option>
+              <option value="150000">₵150,000</option>
+              <option value="200000">₵200,000</option>
             </select>
           </div>
 
-          {/* Sort order select */}
           <div className="space-y-1.5">
-            <label className="text-[10px] font-black uppercase tracking-wider text-gray-500 block">Sort By</label>
-            <select
-              value={sortOrder}
-              onChange={(e) => setSortOrder(e.target.value)}
-              className="w-full bg-[#0F111A] border border-gray-850 text-white rounded-lg p-3 text-xs focus:outline-none focus:border-[#BF1E2E] cursor-pointer"
-            >
+            <label className="text-[10px] font-black uppercase tracking-wider theme-text-muted block">Sort By</label>
+            <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)} className={selectClass}>
               <option value="default">Default</option>
               <option value="price-asc">Price: Low to High</option>
               <option value="price-desc">Price: High to Low</option>
@@ -111,35 +70,25 @@ const UsedCars = ({ onViewDetails }) => {
             </select>
           </div>
 
-          {/* Clear Filters Button */}
           <div className="flex items-end">
             <button
-              onClick={() => {
-                setMake("ALL");
-                setMaxPrice("");
-                setSortOrder("default");
-              }}
-              className="w-full bg-[#1F2232] hover:bg-[#BF1E2E] text-white border border-gray-800 hover:border-transparent font-extrabold text-xs uppercase tracking-wider py-3.5 rounded-lg transition-all cursor-pointer"
+              onClick={() => { setMake("ALL"); setMaxPrice(""); setSortOrder("default"); }}
+              className="w-full theme-bg-button hover:bg-[#BF1E2E] theme-text-primary hover:text-white border theme-border hover:border-transparent font-extrabold text-xs uppercase tracking-wider py-3.5 rounded-lg transition-all cursor-pointer"
             >
               Reset Filters
             </button>
           </div>
         </div>
 
-        {/* Vehicles Grid */}
         {filtered.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {filtered.map((vehicle) => (
-              <VehicleCard
-                key={vehicle.id}
-                vehicle={vehicle}
-                onViewDetails={onViewDetails}
-              />
+              <VehicleCard key={vehicle.id} vehicle={vehicle} onViewDetails={onViewDetails} />
             ))}
           </div>
         ) : (
-          <div className="bg-[#171923] border border-gray-800 rounded-xl p-16 text-center">
-            <p className="text-gray-400 text-sm">No used vehicles match your filter criteria.</p>
+          <div className="theme-card border rounded-xl p-16 text-center">
+            <p className="theme-text-secondary text-sm">No used vehicles match your filter criteria.</p>
           </div>
         )}
       </div>

@@ -1,10 +1,89 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+/* ============================================
+   THEME TOKENS — dark default
+   ============================================ */
+:root {
+  --bg-primary:    #0B0C10;
+  --bg-secondary:  #0F111A;
+  --bg-card:       #171923;
+  --bg-input:      #0F111A;
+  --bg-button:     #1F2232;
+  --text-primary:  #ffffff;
+  --text-secondary:#9CA3AF;
+  --text-muted:    #6B7280;
+  --border-color:  #1F2937;
+  --border-light:  #374151;
+  --scrollbar-track: #0B0C10;
+  --autofill-bg:   #171923;
+  --navbar-bg:     #0F111A;
+  --topbar-bg:     #0B0C10;
+  --modal-bg:      #171923;
+  --transition-theme: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+/* ============================================
+   THEME TOKENS — light override
+   ============================================ */
+[data-theme="light"] {
+  --bg-primary:    #F1F3F7;
+  --bg-secondary:  #E8EBF0;
+  --bg-card:       #FFFFFF;
+  --bg-input:      #F4F5F8;
+  --bg-button:     #E5E7EB;
+  --text-primary:  #111318;
+  --text-secondary:#4B5563;
+  --text-muted:    #9CA3AF;
+  --border-color:  #E5E7EB;
+  --border-light:  #D1D5DB;
+  --scrollbar-track: #E5E7EB;
+  --autofill-bg:   #F4F5F8;
+  --navbar-bg:     #FFFFFF;
+  --topbar-bg:     #F1F3F7;
+  --modal-bg:      #FFFFFF;
+}
+
+/* ============================================
+   SEMANTIC UTILITY CLASSES
+   ============================================ */
+.theme-bg-primary    { background-color: var(--bg-primary);    transition: var(--transition-theme); }
+.theme-bg-secondary  { background-color: var(--bg-secondary);  transition: var(--transition-theme); }
+.theme-bg-card       { background-color: var(--bg-card);       transition: var(--transition-theme); }
+.theme-bg-input      { background-color: var(--bg-input);      transition: var(--transition-theme); }
+.theme-bg-button     { background-color: var(--bg-button);     transition: var(--transition-theme); }
+.theme-bg-navbar     { background-color: var(--navbar-bg);     transition: var(--transition-theme); }
+.theme-bg-topbar     { background-color: var(--topbar-bg);     transition: var(--transition-theme); }
+.theme-bg-modal      { background-color: var(--modal-bg);      transition: var(--transition-theme); }
+
+.theme-text-primary  { color: var(--text-primary);   transition: var(--transition-theme); }
+.theme-text-secondary{ color: var(--text-secondary);  transition: var(--transition-theme); }
+.theme-text-muted    { color: var(--text-muted);      transition: var(--transition-theme); }
+
+.theme-border        { border-color: var(--border-color);  transition: var(--transition-theme); }
+.theme-border-light  { border-color: var(--border-light);  transition: var(--transition-theme); }
+
+/* Card compound helper */
+.theme-card {
+  background-color: var(--bg-card);
+  border-color: var(--border-color);
+  transition: var(--transition-theme);
+}
+
+/* Input compound helper */
+.theme-input {
+  background-color: var(--bg-input);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+  transition: var(--transition-theme);
+}
+
 @layer base {
   body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #0B0C10;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: var(--transition-theme);
   }
 }
 
@@ -120,6 +199,7 @@
   }
 }
 
+
 /* ============================================
    CUSTOM SCROLLBAR STYLING
    ============================================ */
@@ -128,7 +208,7 @@
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0B0C10;
+  background: var(--scrollbar-track);
 }
 ::-webkit-scrollbar-thumb {
   background: #BF1E2E;
@@ -138,11 +218,12 @@
   background: #a31825;
 }
 
-/* Custom input autofill colors for dark mode inputs */
+/* Custom input autofill colors — theme-aware */
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
+input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
-  -webkit-text-fill-color: #ffffff;
-  -webkit-box-shadow: 0 0 0px 1000px #171923 inset;
+  -webkit-text-fill-color: var(--text-primary);
+  -webkit-box-shadow: 0 0 0px 1000px var(--autofill-bg) inset;
   transition: background-color 5000s ease-in-out 0s;
 }
+

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { FaSearch, FaBars, FaTimes, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
+import { FaSearch, FaBars, FaTimes, FaPhoneAlt, FaEnvelope, FaSun, FaMoon } from "react-icons/fa";
+import { useTheme } from "../context/ThemeContext";
 
 const Navbar = ({ currentPage, setCurrentPage, onSearch }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const { theme, toggleTheme } = useTheme();
 
   const navLinks = [
     { id: "home", label: "Home" },
@@ -36,10 +38,10 @@ const Navbar = ({ currentPage, setCurrentPage, onSearch }) => {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-[#0F111A]/95 backdrop-blur-md border-b border-gray-800 transition-all duration-300">
+    <header className="sticky top-0 z-50 theme-bg-navbar border-b theme-border shadow-sm transition-all duration-300" style={{ backdropFilter: "blur(12px)" }}>
       {/* Top micro bar for dealer info */}
-      <div className="bg-[#0B0C10] border-b border-gray-900 py-1.5 px-4 hidden md:block">
-        <div className="max-w-7xl mx-auto flex justify-between items-center text-xs text-gray-400 font-medium">
+      <div className="theme-bg-topbar border-b theme-border py-1.5 px-4 hidden md:block">
+        <div className="max-w-7xl mx-auto flex justify-between items-center text-xs theme-text-secondary font-medium">
           <div className="flex space-x-6">
             <span className="flex items-center gap-1.5"><FaPhoneAlt className="text-[#BF1E2E]" /> +233 576 021 655</span>
             <span className="flex items-center gap-1.5"><FaEnvelope className="text-[#BF1E2E]" /> promautosltd@gmail.com</span>
@@ -52,8 +54,8 @@ const Navbar = ({ currentPage, setCurrentPage, onSearch }) => {
 
       <nav className="max-w-7xl mx-auto flex items-center justify-between p-4 md:px-8">
         {/* Brand Logo */}
-        <div 
-          className="flex items-center cursor-pointer group" 
+        <div
+          className="flex items-center cursor-pointer group"
           onClick={() => handleNavClick("home")}
         >
           <div className="bg-white py-1 px-4 rounded-lg flex items-center justify-center h-12 md:h-14 shadow-sm transition-transform group-hover:scale-105">
@@ -70,7 +72,7 @@ const Navbar = ({ currentPage, setCurrentPage, onSearch }) => {
                 className={`text-xs uppercase font-extrabold tracking-wider transition-all duration-200 cursor-pointer relative py-2 ${
                   currentPage === link.id
                     ? "text-[#BF1E2E]"
-                    : "text-gray-300 hover:text-white"
+                    : "theme-text-secondary hover:text-[#BF1E2E]"
                 }`}
               >
                 {link.label}
@@ -83,15 +85,25 @@ const Navbar = ({ currentPage, setCurrentPage, onSearch }) => {
         </ul>
 
         {/* Right Icons / Call Actions */}
-        <div className="flex items-center space-x-4">
-          <button 
-            className="text-gray-300 hover:text-[#BF1E2E] text-lg p-2 rounded-full hover:bg-gray-800/50 transition-all cursor-pointer"
+        <div className="flex items-center space-x-2">
+          {/* Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            className="theme-text-secondary hover:text-[#BF1E2E] text-lg p-2 rounded-full hover:bg-gray-200/30 dark:hover:bg-gray-800/50 transition-all cursor-pointer"
+            title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            {theme === "dark" ? <FaSun /> : <FaMoon />}
+          </button>
+
+          <button
+            className="theme-text-secondary hover:text-[#BF1E2E] text-lg p-2 rounded-full hover:bg-gray-200/30 transition-all cursor-pointer"
             onClick={() => setSearchOpen(!searchOpen)}
             aria-label="Search Toggle"
           >
             {searchOpen ? <FaTimes /> : <FaSearch />}
           </button>
-          
+
           <button
             onClick={() => handleNavClick("contact")}
             className="hidden sm:inline-block bg-[#BF1E2E] hover:bg-red-800 text-white font-extrabold text-xs uppercase tracking-wider px-5 py-2.5 rounded transition-all transform hover:-translate-y-[1px] active:translate-y-0 cursor-pointer"
@@ -99,8 +111,8 @@ const Navbar = ({ currentPage, setCurrentPage, onSearch }) => {
             Get In Touch
           </button>
 
-          <button 
-            className="lg:hidden text-gray-300 hover:text-white text-xl p-2 rounded-full hover:bg-gray-800/50 transition-all cursor-pointer"
+          <button
+            className="lg:hidden theme-text-secondary hover:text-[#BF1E2E] text-xl p-2 rounded-full hover:bg-gray-200/30 transition-all cursor-pointer"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Menu Toggle"
           >
@@ -111,17 +123,17 @@ const Navbar = ({ currentPage, setCurrentPage, onSearch }) => {
 
       {/* Slide-out Search Bar */}
       {searchOpen && (
-        <div className="bg-[#0B0C10] border-b border-gray-800 py-4 px-6 animate-slide-down">
+        <div className="theme-bg-topbar border-b theme-border py-4 px-6 animate-slide-down">
           <form onSubmit={handleSearchSubmit} className="max-w-3xl mx-auto flex gap-2">
             <input
               type="text"
               placeholder="Search vehicles, parts, specifications..."
               value={searchQuery}
               onChange={handleSearchChange}
-              className="flex-grow bg-[#171923] border border-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:border-[#BF1E2E] focus:ring-1 focus:ring-[#BF1E2E] text-sm"
+              className="flex-grow theme-input border rounded-lg px-4 py-3 focus:outline-none focus:border-[#BF1E2E] focus:ring-1 focus:ring-[#BF1E2E] text-sm"
               autoFocus
             />
-            <button 
+            <button
               type="submit"
               className="bg-[#BF1E2E] hover:bg-red-800 text-white px-6 rounded-lg text-sm font-bold transition-all cursor-pointer"
             >
@@ -133,7 +145,7 @@ const Navbar = ({ currentPage, setCurrentPage, onSearch }) => {
 
       {/* Mobile Drawer Navigation */}
       {menuOpen && (
-        <div className="lg:hidden absolute top-full left-0 w-full bg-[#0F111A] border-b border-gray-800 py-6 px-6 flex flex-col space-y-4 shadow-xl z-40 animate-fade-in">
+        <div className="lg:hidden absolute top-full left-0 w-full theme-bg-navbar border-b theme-border py-6 px-6 flex flex-col space-y-4 shadow-xl z-40 animate-fade-in">
           {navLinks.map((link) => (
             <button
               key={link.id}
@@ -141,13 +153,21 @@ const Navbar = ({ currentPage, setCurrentPage, onSearch }) => {
               className={`text-left text-sm uppercase font-extrabold tracking-wider py-2.5 px-4 rounded-md transition-all ${
                 currentPage === link.id
                   ? "bg-[#BF1E2E] text-white"
-                  : "text-gray-300 hover:bg-gray-800/50 hover:text-white"
+                  : "theme-text-secondary hover:bg-gray-200/30 hover:text-[#BF1E2E]"
               }`}
             >
               {link.label}
             </button>
           ))}
-          <div className="pt-4 border-t border-gray-800 flex flex-col space-y-2 text-xs text-gray-400 px-4">
+          {/* Mobile theme toggle */}
+          <button
+            onClick={toggleTheme}
+            className="flex items-center gap-3 text-left text-sm uppercase font-extrabold tracking-wider py-2.5 px-4 rounded-md theme-text-secondary hover:bg-gray-200/30 transition-all"
+          >
+            {theme === "dark" ? <FaSun className="text-yellow-400" /> : <FaMoon className="text-indigo-500" />}
+            {theme === "dark" ? "Light Mode" : "Dark Mode"}
+          </button>
+          <div className="pt-4 border-t theme-border flex flex-col space-y-2 text-xs theme-text-secondary px-4">
             <span className="flex items-center gap-2"><FaPhoneAlt className="text-[#BF1E2E]" /> +233 576 021 655</span>
             <span className="flex items-center gap-2"><FaEnvelope className="text-[#BF1E2E]" /> promautosltd@gmail.com</span>
           </div>

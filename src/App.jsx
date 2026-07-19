@@ -88,7 +88,7 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0B0C10] flex flex-col font-sans select-none antialiased">
+    <div className="min-h-screen theme-bg-primary theme-text-primary flex flex-col font-sans select-none antialiased">
       {/* 1. Header Navigation */}
       <Navbar 
         currentPage={currentPage} 
@@ -151,11 +151,11 @@ const App = () => {
       {selectedItem && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in">
           {/* Modal Container */}
-          <div className="bg-[#171923] border border-gray-800 rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl relative">
+          <div className="theme-bg-modal border theme-border rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl relative">
             {/* Close Button */}
             <button 
               onClick={handleCloseDetails}
-              className="absolute top-4 right-4 z-10 text-gray-400 hover:text-white bg-gray-950/60 p-2.5 rounded-full border border-gray-800/40 hover:border-gray-700 transition-all cursor-pointer"
+              className="absolute top-4 right-4 z-10 theme-text-secondary hover:text-[#BF1E2E] theme-bg-secondary/60 p-2.5 rounded-full border theme-border hover:border-[#BF1E2E]/40 transition-all cursor-pointer"
             >
               <FaTimes />
             </button>
@@ -163,7 +163,7 @@ const App = () => {
             {/* Modal Body */}
             <div className="grid grid-cols-1 md:grid-cols-2">
               {/* Product Image */}
-              <div className="relative bg-gray-950 aspect-video md:aspect-auto md:h-full flex items-center justify-center p-4">
+              <div className="relative bg-gray-900 aspect-video md:aspect-auto md:h-full flex items-center justify-center p-4">
                 <img 
                   src={selectedItem.image} 
                   alt={selectedItem.name} 
@@ -176,26 +176,26 @@ const App = () => {
               </div>
 
               {/* Product Specifications & Details */}
-              <div className="p-6 md:p-8 flex flex-col justify-between">
+              <div className="p-6 md:p-8 flex flex-col justify-between theme-text-primary">
                 <div>
                   {/* Category / Condition Badge */}
                   <div className="flex gap-2 mb-3">
                     {selectedItem.condition && (
                       <span className={`text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded ${
-                        selectedItem.condition === "NEW" ? "bg-[#BF1E2E] text-white" : "bg-gray-800 text-gray-200"
+                        selectedItem.condition === "NEW" ? "bg-[#BF1E2E] text-white" : "theme-bg-secondary theme-text-secondary"
                       }`}>
                         {selectedItem.condition} Showroom
                       </span>
                     )}
                     {selectedItem.category && (
-                      <span className="bg-gray-800 text-gray-300 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded">
+                      <span className="theme-bg-secondary theme-text-secondary text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded">
                         {selectedItem.category} Vault
                       </span>
                     )}
                   </div>
 
                   {/* Title & Price */}
-                  <h3 className="text-xl font-black uppercase text-white leading-tight mb-2">
+                  <h3 className="text-xl font-black uppercase theme-text-primary leading-tight mb-2">
                     {selectedItem.name}
                   </h3>
                   <div className="text-lg font-black text-[#BF1E2E] mb-4">
@@ -203,10 +203,10 @@ const App = () => {
                   </div>
 
                   {/* Details block */}
-                  <div className="border-t border-b border-gray-800/80 py-4 mb-4">
+                  <div className="border-t border-b theme-border py-4 mb-4">
                     {selectedItem.condition ? (
                       // Vehicle Specs
-                      <div className="grid grid-cols-2 gap-3 text-xs text-gray-400">
+                      <div className="grid grid-cols-2 gap-3 text-xs theme-text-secondary">
                         <div className="flex items-center gap-2"><FaCalendarAlt className="text-[#BF1E2E]" /> <span>{selectedItem.year} Model</span></div>
                         <div className="flex items-center gap-2"><FaCog className="text-[#BF1E2E]" /> <span className="truncate">{selectedItem.transmission}</span></div>
                         <div className="flex items-center gap-2"><FaGasPump className="text-[#BF1E2E]" /> <span>{selectedItem.fuel}</span></div>
@@ -214,7 +214,7 @@ const App = () => {
                       </div>
                     ) : (
                       // Part Specs
-                      <div className="space-y-2 text-xs text-gray-400">
+                      <div className="space-y-2 text-xs theme-text-secondary">
                         <div className="flex items-center gap-2"><FaTools className="text-[#BF1E2E]" /> <span>Comp: {selectedItem.compatibility}</span></div>
                         <div className="flex items-center gap-2">
                           {selectedItem.inStock ? (
@@ -234,7 +234,7 @@ const App = () => {
                   </div>
 
                   {/* Description */}
-                  <p className="text-gray-400 text-xs leading-relaxed mb-6 font-medium">
+                  <p className="theme-text-secondary text-xs leading-relaxed mb-6 font-medium">
                     {selectedItem.description || "High-performance item crafted from premium materials. Built to undergo rigorous testing under extreme performance parameters."}
                   </p>
                 </div>
@@ -251,7 +251,7 @@ const App = () => {
                     href={`https://wa.me/233545526710?text=Hello,%20I'm%20interested%2520in%2520the%2520${encodeURIComponent(selectedItem.name)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-transparent hover:bg-white/5 text-white border border-gray-700 hover:border-gray-500 p-3 rounded-lg transition-all flex items-center justify-center shrink-0"
+                    className="theme-bg-secondary hover:bg-[#BF1E2E]/10 theme-text-primary border theme-border hover:border-green-500/40 p-3 rounded-lg transition-all flex items-center justify-center shrink-0"
                   >
                     <FaWhatsapp className="text-green-500 text-lg" />
                   </a>
