@@ -121,12 +121,17 @@ const Home = ({ vehicles, parts, setCurrentPage, onViewDetails }) => {
             <span className="text-[#BF1E2E] font-black text-xs uppercase tracking-widest bg-red-950/40 border border-red-900/40 px-3.5 py-1.5 rounded-full inline-block mb-4 animate-slide-up">
               {slide.tagline}
             </span>
-            <h1 className="text-4xl sm:text-6xl font-black uppercase tracking-tight leading-none mb-6 text-white animate-slide-up-delay-1">
+            <h1 className="text-4xl sm:text-6xl font-black uppercase tracking-tight leading-none mb-4 text-white animate-slide-up-delay-1">
               {slide.heading[0]} <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#BF1E2E] to-red-500">
                 {slide.heading[1]}
               </span>
             </h1>
+            {/* Brand slogan */}
+            <p className="text-gray-400 text-sm sm:text-base italic font-semibold tracking-wide mb-5 animate-slide-up-delay-2 flex items-center gap-2">
+              <span className="inline-block w-6 h-[2px] bg-[#BF1E2E] rounded shrink-0"></span>
+              It&apos;s your car, have it your way.
+            </p>
             <p className="text-gray-300 text-sm sm:text-base mb-8 leading-relaxed font-medium animate-slide-up-delay-2">
               {slide.description}
             </p>
