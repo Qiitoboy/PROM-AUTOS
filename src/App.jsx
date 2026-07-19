@@ -7,16 +7,17 @@ import UsedCars from "./pages/UsedCars";
 import Parts from "./pages/Parts";
 import Contact from "./pages/Contact";
 import Admin from "./pages/Admin";
+import { getCars } from "./api/cars";
 
-import { initialVehicles, initialParts, initialLeads } from "./data/mockData";
+import { initialParts, initialLeads } from "./data/mockData";
 import { FaTimes, FaWhatsapp, FaEnvelope, FaCalendarAlt, FaCog, FaGasPump, FaTachometerAlt, FaTools, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
 const App = () => {
   // Navigation Routing State
   const [currentPage, setCurrentPage] = useState("home");
-  
+
   // Centralized State Database
-  const [vehicles, setVehicles] = useState(initialVehicles);
+  const [vehicles, setVehicles] = useState([]);
   const [parts, setParts] = useState(initialParts);
   const [leads, setLeads] = useState(initialLeads);
 
@@ -30,6 +31,17 @@ const App = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentPage]);
+
+  useEffect(() => {
+    getCars()
+      .then((response) => {
+        console.log("Homepage cars:", response.data);
+        setVehicles(response.data);
+      })
+      .catch((error) => {
+        console.error("Failed to load cars:", error);
+      });
+  }, []);
 
   // Handle lead submission from contact page
   const handleAddLead = (newLead) => {
@@ -54,7 +66,7 @@ const App = () => {
   const handleInquireItem = (itemName) => {
     setSelectedItem(null);
     setCurrentPage("contact");
-    
+
     // Allow contact page to pre-select by updating interest dropdown
     // This is handled by passing down state or using a minor delay
     setTimeout(() => {
@@ -90,56 +102,54 @@ const App = () => {
   return (
     <div className="min-h-screen theme-bg-primary theme-text-primary flex flex-col font-sans select-none antialiased">
       {/* 1. Header Navigation */}
-      <Navbar 
-        currentPage={currentPage} 
-        setCurrentPage={setCurrentPage} 
-        onSearch={handleSearch} 
+      <Navbar
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        onSearch={handleSearch}
       />
 
       {/* 2. Main Page Render */}
       <main className="flex-grow">
         {currentPage === "home" && (
-          <Home 
-            vehicles={vehicles} 
-            parts={parts} 
-            setCurrentPage={setCurrentPage} 
-            onViewDetails={handleOpenDetails} 
+          <Home
+            vehicles={vehicles}
+            parts={parts}
+            setCurrentPage={setCurrentPage}
+            onViewDetails={handleOpenDetails}
           />
         )}
         {currentPage === "new-cars" && (
-          <NewCars 
-            vehicles={vehicles} 
-            onViewDetails={handleOpenDetails} 
+          <NewCars
+            onViewDetails={handleOpenDetails}
           />
         )}
         {currentPage === "used-cars" && (
-          <UsedCars 
-            vehicles={vehicles} 
-            onViewDetails={handleOpenDetails} 
+          <UsedCars
+            onViewDetails={handleOpenDetails}
           />
         )}
         {currentPage === "parts" && (
-          <Parts 
-            parts={parts} 
-            onViewDetails={handleOpenDetails} 
+          <Parts
+            parts={parts}
+            onViewDetails={handleOpenDetails}
             searchFilter={searchFilter}
           />
         )}
         {currentPage === "contact" && (
-          <Contact 
-            onSubmitLead={handleAddLead} 
-            vehicles={vehicles} 
-            parts={parts} 
+          <Contact
+            onSubmitLead={handleAddLead}
+            vehicles={vehicles}
+            parts={parts}
           />
         )}
         {currentPage === "admin" && (
-          <Admin 
-            vehicles={vehicles} 
-            setVehicles={setVehicles} 
-            parts={parts} 
-            setParts={setParts} 
-            leads={leads} 
-            setLeads={setLeads} 
+          <Admin
+            vehicles={vehicles}
+            setVehicles={setVehicles}
+            parts={parts}
+            setParts={setParts}
+            leads={leads}
+            setLeads={setLeads}
           />
         )}
       </main>
@@ -153,7 +163,7 @@ const App = () => {
           {/* Modal Container */}
           <div className="theme-bg-modal border theme-border rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl relative">
             {/* Close Button */}
-            <button 
+            <button
               onClick={handleCloseDetails}
               className="absolute top-4 right-4 z-10 theme-text-secondary hover:text-[#BF1E2E] theme-bg-secondary/60 p-2.5 rounded-full border theme-border hover:border-[#BF1E2E]/40 transition-all cursor-pointer"
             >
@@ -164,9 +174,9 @@ const App = () => {
             <div className="grid grid-cols-1 md:grid-cols-2">
               {/* Product Image */}
               <div className="relative bg-gray-900 aspect-video md:aspect-auto md:h-full flex items-center justify-center p-4">
-                <img 
-                  src={selectedItem.image} 
-                  alt={selectedItem.name} 
+                <img
+                  src={selectedItem.image}
+                  alt={selectedItem.name}
                   className="max-h-64 md:max-h-96 object-contain"
                   onError={(e) => {
                     e.target.src = "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80";
@@ -181,9 +191,8 @@ const App = () => {
                   {/* Category / Condition Badge */}
                   <div className="flex gap-2 mb-3">
                     {selectedItem.condition && (
-                      <span className={`text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded ${
-                        selectedItem.condition === "NEW" ? "bg-[#BF1E2E] text-white" : "theme-bg-secondary theme-text-secondary"
-                      }`}>
+                      <span className={`text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded ${selectedItem.condition === "NEW" ? "bg-[#BF1E2E] text-white" : "theme-bg-secondary theme-text-secondary"
+                        }`}>
                         {selectedItem.condition} Showroom
                       </span>
                     )}
