@@ -13,8 +13,7 @@ const Navbar = ({ currentPage, setCurrentPage, onSearch }) => {
     { id: "new-cars", label: "New Cars" },
     { id: "used-cars", label: "Used Cars" },
     { id: "parts", label: "Parts Vault" },
-    { id: "contact", label: "Contact Us" },
-    { id: "admin", label: "Command Center" }
+    { id: "contact", label: "Contact Us" }
   ];
 
   const handleNavClick = (pageId) => {
