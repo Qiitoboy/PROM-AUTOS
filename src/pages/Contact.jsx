@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PageHeader from "../components/PageHeader";
 import { FaPhoneAlt, FaWhatsapp, FaEnvelope, FaMapMarkerAlt, FaClock, FaCheck } from "react-icons/fa";
+import { createLead } from "../api/leads";
 
 const Contact = ({ onSubmitLead, vehicles = [], parts = [] }) => {
   const [formData, setFormData] = useState({
@@ -13,24 +14,42 @@ const Contact = ({ onSubmitLead, vehicles = [], parts = [] }) => {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!formData.firstName || !formData.email || !formData.message) return;
 
-    onSubmitLead({
+    const leadData = {
       name: `${formData.firstName} ${formData.lastName}`.trim(),
-      email: formData.email,
       phone: formData.phone,
+      email: formData.email,
       message: formData.message,
-      vehicleInterest: formData.interest,
-      date: new Date().toISOString().split('T')[0],
-      status: "New"
-    });
+      interest: formData.interest,
+      type: formData.interest ? "car" : "car",
+    };
 
-    setSubmitted(true);
-    setFormData({ firstName: "", lastName: "", email: "", phone: "", interest: "", message: "" });
+    try {
+      await createLead(leadData);
 
-    setTimeout(() => { setSubmitted(false); }, 5000);
+      setSubmitted(true);
+
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        interest: "",
+        message: "",
+      });
+
+      setTimeout(() => {
+        setSubmitted(false);
+      }, 5000);
+
+    } catch (error) {
+      console.error("Failed to submit lead:", error);
+      alert("Failed to submit inquiry. Please try again.");
+    }
   };
 
   return (
@@ -130,12 +149,12 @@ const Contact = ({ onSubmitLead, vehicles = [], parts = [] }) => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
                 <label className="text-[10px] font-black uppercase tracking-wider theme-text-secondary block">First Name *</label>
-                <input type="text" required placeholder="e.g. Lewis" value={formData.firstName} onChange={(e) => setFormData({...formData, firstName: e.target.value})}
+                <input type="text" required placeholder="e.g. Lewis" value={formData.firstName} onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                   className="w-full theme-input border rounded-lg px-4 py-3 text-xs focus:outline-none focus:border-[#BF1E2E] transition-all" />
               </div>
               <div className="space-y-1.5">
                 <label className="text-[10px] font-black uppercase tracking-wider theme-text-secondary block">Last Name</label>
-                <input type="text" placeholder="e.g. Hamilton" value={formData.lastName} onChange={(e) => setFormData({...formData, lastName: e.target.value})}
+                <input type="text" placeholder="e.g. Hamilton" value={formData.lastName} onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                   className="w-full theme-input border rounded-lg px-4 py-3 text-xs focus:outline-none focus:border-[#BF1E2E] transition-all" />
               </div>
             </div>
@@ -143,19 +162,19 @@ const Contact = ({ onSubmitLead, vehicles = [], parts = [] }) => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
                 <label className="text-[10px] font-black uppercase tracking-wider theme-text-secondary block">Email Address *</label>
-                <input type="email" required placeholder="e.g. l.hamilton@mercedes.com" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})}
+                <input type="email" required placeholder="e.g. l.hamilton@mercedes.com" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full theme-input border rounded-lg px-4 py-3 text-xs focus:outline-none focus:border-[#BF1E2E] transition-all" />
               </div>
               <div className="space-y-1.5">
                 <label className="text-[10px] font-black uppercase tracking-wider theme-text-secondary block">Phone Number</label>
-                <input type="tel" placeholder="e.g. +233 576 021 655" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                <input type="tel" placeholder="e.g. +233 576 021 655" value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   className="w-full theme-input border rounded-lg px-4 py-3 text-xs focus:outline-none focus:border-[#BF1E2E] transition-all" />
               </div>
             </div>
 
             <div className="space-y-1.5">
               <label className="text-[10px] font-black uppercase tracking-wider theme-text-secondary block">Item / Vehicle of Interest</label>
-              <select value={formData.interest} onChange={(e) => setFormData({...formData, interest: e.target.value})}
+              <select value={formData.interest} onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
                 className="w-full theme-input border rounded-lg px-4 py-3 text-xs focus:outline-none focus:border-[#BF1E2E] cursor-pointer">
                 <option value="">General Inquiry / Custom Request</option>
                 <optgroup label="Vehicles">
@@ -169,7 +188,7 @@ const Contact = ({ onSubmitLead, vehicles = [], parts = [] }) => {
 
             <div className="space-y-1.5">
               <label className="text-[10px] font-black uppercase tracking-wider theme-text-secondary block">Message Details *</label>
-              <textarea required rows={5} placeholder="Details of your request..." value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})}
+              <textarea required rows={5} placeholder="Details of your request..." value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 className="w-full theme-input border rounded-lg px-4 py-3 text-xs focus:outline-none focus:border-[#BF1E2E] transition-all resize-none" />
             </div>
 

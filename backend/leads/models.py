@@ -14,19 +14,18 @@ class Lead(models.Model):
         ("closed", "Closed"),
     ]
 
-
     name = models.CharField(max_length=100)
 
-    phone = models.CharField(
-        max_length=20
-    )
+    phone = models.CharField(max_length=20)
 
-    email = models.EmailField(
-        blank=True
-    )
+    email = models.EmailField(blank=True)
 
     message = models.TextField()
 
+    interest = models.CharField(
+        max_length=200,
+        blank=True
+    )
 
     type = models.CharField(
         max_length=10,
@@ -34,18 +33,15 @@ class Lead(models.Model):
         default="car"
     )
 
-
     status = models.CharField(
         max_length=20,
         choices=STATUS_CHOICES,
         default="new"
     )
 
-
     created_at = models.DateTimeField(
         auto_now_add=True
     )
-
 
     def __str__(self):
         return f"{self.name} - {self.type}"

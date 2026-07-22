@@ -130,14 +130,12 @@ const App = () => {
         )}
         {currentPage === "parts" && (
           <Parts
-            parts={parts}
             onViewDetails={handleOpenDetails}
             searchFilter={searchFilter}
           />
         )}
         {currentPage === "contact" && (
           <Contact
-            onSubmitLead={handleAddLead}
             vehicles={vehicles}
             parts={parts}
           />
