@@ -1,0 +1,126 @@
+[
+{
+  "model": "cars.car",
+  "pk": 2,
+  "fields": {
+    "brand": "Toyota",
+    "model": "Corolla",
+    "year": 2022,
+    "price": "25000.00",
+    "mileage": 30000,
+    "fuel_type": "Petrol",
+    "transmission": "Automatic",
+    "body_type": "",
+    "engine": "",
+    "speed": "",
+    "condition": "used",
+    "status": "available",
+    "description": "",
+    "featured": true,
+    "created_at": "2026-07-07T15:21:11.976Z",
+    "updated_at": "2026-07-13T21:54:33.892Z"
+  }
+},
+{
+  "model": "cars.car",
+  "pk": 4,
+  "fields": {
+    "brand": "Honda",
+    "model": "Accord",
+    "year": 2025,
+    "price": "300500.00",
+    "mileage": 22,
+    "fuel_type": "diesel",
+    "transmission": "Automatic",
+    "body_type": "",
+    "engine": "",
+    "speed": "3.2s 0-100 km/h",
+    "condition": "new",
+    "status": "available",
+    "description": "",
+    "featured": true,
+    "created_at": "2026-07-08T13:50:32.816Z",
+    "updated_at": "2026-07-13T21:52:54.944Z"
+  }
+},
+{
+  "model": "cars.car",
+  "pk": 5,
+  "fields": {
+    "brand": "Honda",
+    "model": "CIvic",
+    "year": 2023,
+    "price": "122441.00",
+    "mileage": 22,
+    "fuel_type": "diesel",
+    "transmission": "Automatic",
+    "body_type": "",
+    "engine": "",
+    "speed": "3.2s 0-100 km/h",
+    "condition": "new",
+    "status": "available",
+    "description": "",
+    "featured": true,
+    "created_at": "2026-07-08T14:11:06.349Z",
+    "updated_at": "2026-07-13T21:50:25.464Z"
+  }
+},
+{
+  "model": "cars.car",
+  "pk": 6,
+  "fields": {
+    "brand": "Toyota",
+    "model": "corolla",
+    "year": 2020,
+    "price": "30000.00",
+    "mileage": 33000,
+    "fuel_type": "diesel",
+    "transmission": "Automatic",
+    "body_type": "",
+    "engine": "",
+    "speed": "",
+    "condition": "new",
+    "status": "available",
+    "description": "",
+    "featured": true,
+    "created_at": "2026-07-08T14:15:34.546Z",
+    "updated_at": "2026-07-13T21:53:49.679Z"
+  }
+},
+{
+  "model": "cars.carimage",
+  "pk": 1,
+  "fields": {
+    "car": 6,
+    "image": "cars/jetour_1WCXXmQ.jpeg",
+    "uploaded_at": "2026-07-08T14:15:34.552Z"
+  }
+},
+{
+  "model": "cars.carimage",
+  "pk": 2,
+  "fields": {
+    "car": 5,
+    "image": "cars/Honda-Civic-2018-wallpaper-1920x960.jpeg",
+    "uploaded_at": "2026-07-13T21:50:25.478Z"
+  }
+},
+{
+  "model": "cars.carimage",
+  "pk": 3,
+  "fields": {
+    "car": 4,
+    "image": "cars/car1.jpg",
+    "uploaded_at": "2026-07-13T21:52:54.954Z"
+  }
+},
+{
+  "model": "cars.carimage",
+  "pk": 4,
+  "fields": {
+    "car": 2,
+    "image": "cars/car5.jpg",
+    "uploaded_at": "2026-07-13T21:54:33.898Z"
+  }
+}
+]
