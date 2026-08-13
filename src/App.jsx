@@ -9,7 +9,7 @@ import Contact from "./pages/Contact";
 import Admin from "./pages/Admin";
 import { getCars } from "./api/cars";
 
-import { initialParts, initialLeads } from "./data/mockData";
+import { initialLeads } from "./data/mockData";
 import { FaTimes, FaWhatsapp, FaEnvelope, FaCalendarAlt, FaCog, FaGasPump, FaTachometerAlt, FaTools, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
 const App = () => {
@@ -18,7 +18,7 @@ const App = () => {
 
   // Centralized State Database
   const [vehicles, setVehicles] = useState([]);
-  const [parts, setParts] = useState(initialParts);
+  const [parts, setParts] = useState([]);
   const [leads, setLeads] = useState(initialLeads);
 
   // Search filter query
