@@ -12,14 +12,12 @@ class Part(models.Model):
         ("other", "Other"),
     ]
 
-
     name = models.CharField(
         max_length=200
     )
 
     category = models.CharField(
-        max_length=50,
-        choices=CATEGORY_CHOICES
+        max_length=50
     )
 
     price = models.DecimalField(
@@ -40,6 +38,10 @@ class Part(models.Model):
         blank=True
     )
 
+    featured = models.BooleanField(
+        default=False
+    )
+
     image = models.ImageField(
         upload_to="parts/",
         blank=True,
@@ -49,7 +51,6 @@ class Part(models.Model):
     created_at = models.DateTimeField(
         auto_now_add=True
     )
-
 
     def __str__(self):
         return self.name

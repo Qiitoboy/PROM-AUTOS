@@ -8,7 +8,7 @@ import Parts from "./pages/Parts";
 import Contact from "./pages/Contact";
 import Admin from "./pages/Admin";
 import { getCars } from "./api/cars";
-
+import { getParts } from "./api/parts";
 import { initialLeads } from "./data/mockData";
 import { FaTimes, FaWhatsapp, FaEnvelope, FaCalendarAlt, FaCog, FaGasPump, FaTachometerAlt, FaTools, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
@@ -40,6 +40,17 @@ const App = () => {
       })
       .catch((error) => {
         console.error("Failed to load cars:", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    getParts()
+      .then((response) => {
+        console.log("Homepage parts:", response.data);
+        setParts(response.data);
+      })
+      .catch((error) => {
+        console.error("Failed to load parts:", error);
       });
   }, []);
 
